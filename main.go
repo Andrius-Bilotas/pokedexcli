@@ -1,8 +1,9 @@
 package main
 
 import (
-	"pokedex/internal"
 	"time"
+
+	"github.com/andrius-bilotas/pokedexcli/internal"
 )
 
 type config struct {
