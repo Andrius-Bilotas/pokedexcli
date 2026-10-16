@@ -11,6 +11,7 @@ type config struct {
 	Next     string
 	Previous string
 	cache    *internal.Cache
+	pokemon  map[string]detailedPokemon
 }
 
 type cliCommand struct {
@@ -46,6 +47,11 @@ func getCommands() map[string]cliCommand {
 			description: "Takes in location area name and provides pokemon available in that area",
 			callback:    commandExplore,
 		},
+		"catch": {
+			name:        "catch",
+			description: "Takes in pokemon name and tries to catch him",
+			callback:    commandCatch,
+		},
 	}
 }
 
@@ -53,6 +59,7 @@ func main() {
 	config := config{
 		commands: getCommands(),
 		cache:    internal.NewCache(20 * time.Second),
+		pokemon:  map[string]detailedPokemon{},
 	}
 	repl(&config)
 }
