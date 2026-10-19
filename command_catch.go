@@ -7,11 +7,31 @@ import (
 )
 
 type detailedPokemon struct {
-	Name            string `json:"name"`
-	Base_experience int    `json:"base_experience"`
+	Height          int           `json:"height"`
+	Weight          int           `json:"weight"`
+	Base_experience int           `json:"base_experience"`
+	Stats           []pokemonStat `json:"stats"`
+	Types           []pokemonType `json:"types"`
+	pokemon
 }
 
-const coeficient = 10
+type pokemonStat struct {
+	Base_Stat int  `json:"base_stat"`
+	Effort    int  `json:"effort"`
+	Stat      stat `json:"stat"`
+}
+
+type stat struct {
+	Name string `json:"name"`
+	Url  string `json:"url"`
+}
+
+type pokemonType struct {
+	Slot int  `json:"slot"`
+	Type stat `json:"type"`
+}
+
+const coeficient = 100
 
 func commandCatch(params []string, cfg *config) error {
 	if len(params) == 0 {
